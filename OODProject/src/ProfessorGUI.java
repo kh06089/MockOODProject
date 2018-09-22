@@ -27,6 +27,7 @@ public class ProfessorGUI extends Application {
     private double bGroundWidth = 200;
     private double bGroundHeight = 112.5;
     private Desktop desktop = Desktop.getDesktop();
+    private String backgroundColor = "-fx-background-color: #98B4C2";
 
 
     public static void main(String[] args) {
@@ -38,10 +39,11 @@ public class ProfessorGUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane p = new Pane();
         Pane outerPane = new Pane();
-        outerPane.setStyle("-fx-background-color: #98B4C2");
+        outerPane.setStyle(backgroundColor);
+
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png");
         Image help = new Image(getClass().getResourceAsStream("help.png"));
-        help.getWidth();
+
         FileChooser fileChooser = new FileChooser();
 
 
@@ -61,19 +63,22 @@ public class ProfessorGUI extends Application {
         Button send = new Button(" Send Out\n   Emails");
         Button btnHelp = new Button();
 
+        Tooltip helpTip = new Tooltip();
+        helpTip.setText("Text File Format Help");
+
         btnHelp.setGraphic(new ImageView(help));
 
         question.setLayoutX(70);
         email.setLayoutX(230);
         reports.setLayoutX(70);
         send.setLayoutX(230);
-        btnHelp.setLayoutX(5);
+        btnHelp.setLayoutX(0);
 
         question.setLayoutY(160);
         email.setLayoutY(160);
         reports.setLayoutY(240);
         send.setLayoutY(240);
-        btnHelp.setLayoutY(5);
+        btnHelp.setLayoutY(4);
 
         question.setPrefWidth(100);
         question.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -88,8 +93,9 @@ public class ProfessorGUI extends Application {
         send.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         btnHelp.setGraphic(new ImageView(help));
-        btnHelp.setStyle("-fx-background-color: #FFFFFF");
-        btnHelp.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        btnHelp.setTooltip(helpTip);
+        btnHelp.setStyle(backgroundColor);
+
 
 
 
@@ -99,12 +105,13 @@ public class ProfessorGUI extends Application {
         btnHelp.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                Stage secondaryStage = new Stage();
+                Stage helpStage = new Stage();
+                helpStage.setTitle("File Formats");
                 Pane rPane = new Pane();
                 Scene rScene = new Scene(rPane,300,400);
 
-                secondaryStage.setScene(rScene);
-                secondaryStage.show();
+                helpStage.setScene(rScene);
+                helpStage.show();
             }
         });
 
@@ -136,15 +143,38 @@ public class ProfessorGUI extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                Stage secondaryStage = new Stage();
-                Pane rPane = new Pane();
-                Scene rScene = new Scene(rPane,300,400);
+                Stage reportStage = new Stage();
+                reportStage.setTitle("Reports");
 
-                secondaryStage.setScene(rScene);
-                secondaryStage.show();
+                Pane rPane = new Pane();
+                rPane.setStyle(backgroundColor);
+
+                Scene rScene = new Scene(rPane,290,90);
+
+                Button responses = new Button("   Student\nResponses");
+                Button grades = new Button("Student\n Grades");
+
+                responses.setLayoutX(30);
+                responses.setLayoutY(20);
+                responses.setPrefWidth(100);
+                responses.setPrefHeight(50);
+                responses.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+
+                grades.setLayoutX(160);
+                grades.setLayoutY(20);
+                grades.setPrefWidth(100);
+                grades.setPrefHeight(50);
+                grades.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+
+
+                rPane.getChildren().addAll(responses, grades);
+                reportStage.setScene(rScene);
+                reportStage.show();
             }
 
         });
+
+
 
         send.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -153,7 +183,7 @@ public class ProfessorGUI extends Application {
                 Stage thirdStage = new Stage();
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
-                sendPane.setStyle("-fx-background-color: silver");
+                sendPane.setStyle(backgroundColor);
 
                 Button sendOut = new Button("Send");
                 sendOut.setLayoutX(400);
@@ -168,7 +198,7 @@ public class ProfessorGUI extends Application {
                 timeLimit.setFont(Font.font("Arial", FontWeight.BOLD, 14));
                 Label qcode = new Label("Set Quiz Code:");
                 qcode.setLayoutX(120);
-                qcode.setLayoutY(155);
+                qcode.setLayoutY(160);
                 qcode.setFont(Font.font("Arial", FontWeight.BOLD, 14));
                 Label feedback = new Label("Set Feedback Option:");
                 feedback.setLayoutX(120);
@@ -192,19 +222,19 @@ public class ProfessorGUI extends Application {
 
                 ComboBox<Integer> days = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
                 days.setLayoutX(120);
-                days.setLayoutY(120);
+                days.setLayoutY(110);
 
                 ComboBox<Integer> hours = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24));
                 hours.setLayoutX(190);
-                hours.setLayoutY(120);
+                hours.setLayoutY(110);
 
                 ComboBox<Integer> mins = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
                 mins.setLayoutX(260);
-                mins.setLayoutY(120);
+                mins.setLayoutY(110);
 
                 ComboBox<Integer> sec = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
                 sec.setLayoutX(330);
-                sec.setLayoutY(120);
+                sec.setLayoutY(110);
 
 
                 TextField quizCode = new TextField();
@@ -233,9 +263,9 @@ public class ProfessorGUI extends Application {
                 rb2.setLayoutX(120);
                 rb3.setLayoutX(120);
 
-                rb1.setLayoutY(250);
-                rb2.setLayoutY(275);
-                rb3.setLayoutY(300);
+                rb1.setLayoutY(255);
+                rb2.setLayoutY(280);
+                rb3.setLayoutY(305);
 
 
                 sendPane.getChildren().addAll(sendOut,days,hours,mins,sec,timeLimit,dayLabel,hourLabel,minLabel,secLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
@@ -250,7 +280,7 @@ public class ProfessorGUI extends Application {
         p.getChildren().addAll(question,email,reports,send,btnHelp);
         outerPane.getChildren().add(p);
 
-        Scene s = new Scene(outerPane,400,350);
+        Scene s = new Scene(outerPane,400,335);
 
         primaryStage.setScene(s);
         primaryStage.show();
