@@ -39,6 +39,8 @@ public class ProfessorGUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane p = new Pane();
         Pane outerPane = new Pane();
+        
+        //Background Design
         outerPane.setStyle(backgroundColor);
 
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png");
@@ -56,6 +58,8 @@ public class ProfessorGUI extends Application {
         Background background = new Background(bGround);
 
         p.setBackground(background);
+        
+        //Create Buttons
         Button question = new Button("  Upload\n" +
                                           "Questions");
         Button email = new Button("Upload\n Emails");
@@ -68,6 +72,7 @@ public class ProfessorGUI extends Application {
 
         btnHelp.setGraphic(new ImageView(help));
 
+        //Set Location and size of buttons
         question.setLayoutX(70);
         email.setLayoutX(230);
         reports.setLayoutX(70);
@@ -180,11 +185,12 @@ public class ProfessorGUI extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                Stage thirdStage = new Stage();
+                Stage sendStage = new Stage();
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
                 sendPane.setStyle(backgroundColor);
-
+                
+                //Button to send out quiz link
                 Button sendOut = new Button("Send");
                 sendOut.setLayoutX(400);
                 sendOut.setLayoutY(350);
@@ -220,6 +226,7 @@ public class ProfessorGUI extends Application {
                 secLabel.setLayoutX(330);
                 secLabel.setLayoutY(90);
 
+                //Boxes to set Time Limit
                 ComboBox<Integer> days = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
                 days.setLayoutX(120);
                 days.setLayoutY(110);
@@ -270,8 +277,8 @@ public class ProfessorGUI extends Application {
 
                 sendPane.getChildren().addAll(sendOut,days,hours,mins,sec,timeLimit,dayLabel,hourLabel,minLabel,secLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
 
-                thirdStage.setScene(sendScene);
-                thirdStage.show();
+                sendStage.setScene(sendScene);
+                sendStage.show();
             }
 
         });
