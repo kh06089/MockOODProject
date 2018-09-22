@@ -10,12 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.swing.text.Element;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +37,13 @@ public class ProfessorGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane p = new Pane();
+        Pane outerPane = new Pane();
+        outerPane.setStyle("-fx-background-color: #98B4C2");
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png");
+        Image help = new Image(getClass().getResourceAsStream("help.png"));
+        help.getWidth();
         FileChooser fileChooser = new FileChooser();
+
 
 
         double hPosition = (400/2)-(bGroundWidth/2);
@@ -52,7 +59,9 @@ public class ProfessorGUI extends Application {
         Button email = new Button("Upload\n Emails");
         Button reports = new Button("  View\nReports");
         Button send = new Button(" Send Out\n   Emails");
-        Button btnHelp = new Button("?");
+        Button btnHelp = new Button();
+
+        btnHelp.setGraphic(new ImageView(help));
 
         question.setLayoutX(70);
         email.setLayoutX(230);
@@ -67,16 +76,20 @@ public class ProfessorGUI extends Application {
         btnHelp.setLayoutY(5);
 
         question.setPrefWidth(100);
-        question.setStyle("-fx-font: 12 font ; -fx-base: #d9d9d9;");
+        question.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         email.setPrefWidth(100);
-        email.setStyle("-fx-font: 12 font ; -fx-base: #d9d9d9;");
+        email.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         reports.setPrefWidth(100);
-        reports.setStyle("-fx-font: 12 font ; -fx-base: #d9d9d9;");
+        reports.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         send.setPrefWidth(100);
-        send.setStyle("-fx-font: 12 font ; -fx-base: #d9d9d9;");
+        send.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+
+        btnHelp.setGraphic(new ImageView(help));
+        btnHelp.setStyle("-fx-background-color: #FFFFFF");
+        btnHelp.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
 
 
@@ -235,9 +248,9 @@ public class ProfessorGUI extends Application {
 
 
         p.getChildren().addAll(question,email,reports,send,btnHelp);
+        outerPane.getChildren().add(p);
 
-
-        Scene s = new Scene(p,400,350);
+        Scene s = new Scene(outerPane,400,350);
 
         primaryStage.setScene(s);
         primaryStage.show();
