@@ -70,7 +70,7 @@ public class ProfessorGUI extends Application {
         Tooltip helpTip = new Tooltip();
         helpTip.setText("Text File Format Help");
 
- //       btnHelp.setGraphic(new ImageView(help));
+        btnHelp.setGraphic(new ImageView(help));
 
         //Set Location and size of buttons
         question.setLayoutX(70);
