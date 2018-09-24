@@ -70,7 +70,7 @@ public class ProfessorGUI extends Application {
         Tooltip helpTip = new Tooltip();
         helpTip.setText("Text File Format Help");
 
-        btnHelp.setGraphic(new ImageView(help));
+ //       btnHelp.setGraphic(new ImageView(help));
 
         //Set Location and size of buttons
         question.setLayoutX(70);
@@ -222,10 +222,6 @@ public class ProfessorGUI extends Application {
                 minLabel.setLayoutX(260);
                 minLabel.setLayoutY(90);
 
-                Label secLabel = new Label("Seconds:");
-                secLabel.setLayoutX(330);
-                secLabel.setLayoutY(90);
-
                 //Boxes to set Time Limit
                 ComboBox<Integer> days = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
                 days.setLayoutX(120);
@@ -238,10 +234,6 @@ public class ProfessorGUI extends Application {
                 ComboBox<Integer> mins = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
                 mins.setLayoutX(260);
                 mins.setLayoutY(110);
-
-                ComboBox<Integer> sec = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
-                sec.setLayoutX(330);
-                sec.setLayoutY(110);
 
 
                 TextField quizCode = new TextField();
@@ -275,7 +267,7 @@ public class ProfessorGUI extends Application {
                 rb3.setLayoutY(305);
 
 
-                sendPane.getChildren().addAll(sendOut,days,hours,mins,sec,timeLimit,dayLabel,hourLabel,minLabel,secLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
+                sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
 
                 sendStage.setScene(sendScene);
                 sendStage.show();
