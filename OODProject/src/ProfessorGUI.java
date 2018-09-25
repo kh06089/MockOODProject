@@ -47,7 +47,7 @@ public class ProfessorGUI extends Application {
         //Background Design
         outerPane.setStyle(backgroundColor);
 
-        Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png");
+        Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", bGroundWidth, bGroundHeight, true, true);
         Image help = new Image(getClass().getResourceAsStream("help.png"), 25, 25, false, true);
 
 
