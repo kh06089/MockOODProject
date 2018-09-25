@@ -1,3 +1,5 @@
+package OODProject.src;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
@@ -44,7 +47,9 @@ public class ProfessorGUI extends Application {
         outerPane.setStyle(backgroundColor);
 
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png");
-        Image help = new Image(getClass().getResourceAsStream("help.png"));
+        Image help = new Image(getClass().getResourceAsStream("help.png"), 25, 25, false, true);
+
+
 
         FileChooser fileChooser = new FileChooser();
 
@@ -52,6 +57,7 @@ public class ProfessorGUI extends Application {
 
         double hPosition = (400/2)-(bGroundWidth/2);
 
+        //Set size and location of background image
         BackgroundSize backgroundSize = new BackgroundSize(bGroundWidth, bGroundHeight, false, false, false, false);
         BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, hPosition, false, Side.TOP, 23.75, false);
         BackgroundImage bGround = new BackgroundImage(backGrd, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,bPosition,backgroundSize);
@@ -67,6 +73,8 @@ public class ProfessorGUI extends Application {
         Button send = new Button(" Send Out\n   Emails");
         Button btnHelp = new Button();
 
+
+        //Create tooltip for help button
         Tooltip helpTip = new Tooltip();
         helpTip.setText("Text File Format Help");
 
@@ -81,23 +89,31 @@ public class ProfessorGUI extends Application {
         email.setLayoutY(160);
         reports.setLayoutY(240);
         send.setLayoutY(240);
-        btnHelp.setLayoutY(4);
+        btnHelp.setLayoutY(0);
 
         question.setPrefWidth(100);
         question.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        question.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px;");
 
         email.setPrefWidth(100);
         email.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        email.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px;");
+
 
         reports.setPrefWidth(100);
         reports.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        reports.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px;");
+
 
         send.setPrefWidth(100);
         send.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        send.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px;");
+
+
 
         btnHelp.setGraphic(new ImageView(help));
-        btnHelp.setTooltip(helpTip);
         btnHelp.setStyle(backgroundColor);
+        btnHelp.setTooltip(helpTip);
 
 
 
@@ -162,12 +178,14 @@ public class ProfessorGUI extends Application {
                 responses.setPrefWidth(100);
                 responses.setPrefHeight(50);
                 responses.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+                responses.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px ");
 
                 grades.setLayoutX(160);
                 grades.setLayoutY(20);
                 grades.setPrefWidth(100);
                 grades.setPrefHeight(50);
                 grades.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+                grades.setStyle(" -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px ");
 
 
                 rPane.getChildren().addAll(responses, grades);
