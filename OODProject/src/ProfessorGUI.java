@@ -1,5 +1,3 @@
-package OODProject.src;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -71,7 +69,7 @@ public class ProfessorGUI extends Application {
                                           "Questions");
         Button email = new Button("Upload\n Emails");
         Button reports = new Button("  View\nReports");
-        Button send = new Button(" Send Out\n   Emails");
+        Button send = new Button(" Send Out\n     Quiz");
         Button btnHelp = new Button();
 
 
@@ -206,6 +204,7 @@ public class ProfessorGUI extends Application {
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
                 sendPane.setStyle(backgroundColor);
+                sendStage.setTitle("Send Quiz");
                 
                 //Button to send out quiz link
                 Button sendOut = new Button("Send");
@@ -215,6 +214,24 @@ public class ProfessorGUI extends Application {
                 sendOut.setPrefHeight(20);
                 sendOut.setFont(Font.font(14) );
                 sendOut.setStyle(buttonStyle);
+                
+                Button cancel = new Button("Cancel");
+                cancel.setLayoutX(300);
+                cancel.setLayoutY(350);
+                cancel.setPrefWidth(80);
+                cancel.setPrefHeight(20);
+                cancel.setFont(Font.font(14) );
+                cancel.setStyle(buttonStyle);
+                
+                cancel.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						sendStage.close();
+						
+					}
+                	
+                });
 
                 Label timeLimit = new Label("Set Time Limit:");
                 timeLimit.setLayoutX(120);
@@ -294,7 +311,7 @@ public class ProfessorGUI extends Application {
                 rb3.setLayoutY(305);
 
 
-                sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
+                sendPane.getChildren().addAll(sendOut,cancel,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
 
                 sendStage.setScene(sendScene);
                 sendStage.show();
