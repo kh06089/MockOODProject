@@ -1,9 +1,11 @@
 package OODProject.src;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,13 +16,11 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import javax.swing.text.Element;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -71,7 +71,7 @@ public class ProfessorGUI extends Application {
                                           "Questions");
         Button email = new Button("Upload\n Emails");
         Button reports = new Button("  View\nReports");
-        Button send = new Button(" Send Out\n   Emails");
+        Button send = new Button("Send Out\n Quizzes");
         Button btnHelp = new Button();
 
 
@@ -127,9 +127,73 @@ public class ProfessorGUI extends Application {
             public void handle(ActionEvent event) {
                 Stage helpStage = new Stage();
                 helpStage.setTitle("File Formats");
-                Pane rPane = new Pane();
-                Scene rScene = new Scene(rPane,300,400);
 
+                Pane rPane = new Pane();
+                Pane emailsPane = new Pane();
+                Pane questionsPane = new Pane();
+
+                Image emailImg = new Image(getClass().getResourceAsStream("emails.png"));
+
+                Button close;
+
+                BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, true, false);
+                BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, 0, false, Side.TOP, 30, false);
+                BackgroundImage bGround = new BackgroundImage(emailImg, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,bPosition,backgroundSize);
+                Background background = new Background(bGround);
+
+                emailsPane.setBackground(background);
+                emailsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px;");
+
+
+                questionsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px;");
+                Scene rScene = new Scene(rPane,300,450);
+
+
+                emailsPane.setPrefWidth(280);
+                emailsPane.setPrefHeight(190);
+                emailsPane.setLayoutX(10);
+                emailsPane.setLayoutY(10);
+
+                questionsPane.setPrefWidth(280);
+                questionsPane.setPrefHeight(190);
+                questionsPane.setLayoutX(10);
+                questionsPane.setLayoutY(210);
+
+                Label emailLabel = new Label("Email Text Format");
+                emailLabel.setLayoutX(80);
+                emailLabel.setLayoutY(9);
+                emailLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+
+                Label questLabel = new Label("Question Text Format");
+                questLabel.setLayoutX(75);
+                questLabel.setLayoutY(9);
+                questLabel.setFont(Font.font("Arial", FontWeight.BLACK,14));
+
+                close = new Button("Close");
+                close.setLayoutX(110);
+                close.setLayoutY(405);
+                close.setPrefWidth(80);
+                close.setPrefHeight(30);
+                close.setFont(Font.font(14) );
+                close.setStyle(buttonStyle);
+
+                close.setOnAction(new EventHandler<ActionEvent>(){
+                    @Override
+                    public void handle(ActionEvent event){
+                        helpStage.hide();
+                    }
+                });
+
+
+
+
+
+
+                emailsPane.getChildren().addAll(emailLabel);
+                questionsPane.getChildren().addAll(questLabel);
+
+                rPane.setStyle(backgroundColor);
+                rPane.getChildren().addAll(emailsPane,questionsPane, close);
                 helpStage.setScene(rScene);
                 helpStage.show();
             }
@@ -192,6 +256,7 @@ public class ProfessorGUI extends Application {
                 rPane.getChildren().addAll(responses, grades);
                 reportStage.setScene(rScene);
                 reportStage.show();
+
             }
 
         });
@@ -293,11 +358,29 @@ public class ProfessorGUI extends Application {
                 rb2.setLayoutY(280);
                 rb3.setLayoutY(305);
 
+                //Button gives option to return to last stage
+                Button cancel = new Button("Cancel");
+                cancel.setLayoutX(20);
+                cancel.setLayoutY(350);
+                cancel.setPrefWidth(80);
+                cancel.setPrefHeight(20);
+                cancel.setFont(Font.font(14) );
+                cancel.setStyle(buttonStyle);
 
-                sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
+                cancel.setOnAction(new EventHandler<ActionEvent>(){
+                    @Override
+                    public void handle(ActionEvent event){
+                        sendStage.hide();
+                        primaryStage.show();
+                    }
+                });
+
+
+                sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback, cancel);
 
                 sendStage.setScene(sendScene);
                 sendStage.show();
+                primaryStage.hide();
             }
 
         });
@@ -310,6 +393,7 @@ public class ProfessorGUI extends Application {
 
         primaryStage.setScene(s);
         primaryStage.show();
+
     }
 
     private void openFile(File file){
