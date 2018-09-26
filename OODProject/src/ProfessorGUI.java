@@ -271,6 +271,7 @@ public class ProfessorGUI extends Application {
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
                 sendPane.setStyle(backgroundColor);
+                sendStage.setTitle("Send Quiz");
 
                 //Button to send out quiz link
                 Button sendOut = new Button("Send");
@@ -364,7 +365,7 @@ public class ProfessorGUI extends Application {
                 cancel.setLayoutY(350);
                 cancel.setPrefWidth(80);
                 cancel.setPrefHeight(20);
-                cancel.setFont(Font.font(14) );
+                cancel.setFont(Font.font(14));
                 cancel.setStyle(buttonStyle);
 
                 cancel.setOnAction(new EventHandler<ActionEvent>(){
