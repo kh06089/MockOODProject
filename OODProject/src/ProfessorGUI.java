@@ -361,7 +361,7 @@ public class ProfessorGUI extends Application {
 
                 //Button gives option to return to last stage
                 Button cancel = new Button("Cancel");
-                cancel.setLayoutX(20);
+                cancel.setLayoutX(300);
                 cancel.setLayoutY(350);
                 cancel.setPrefWidth(80);
                 cancel.setPrefHeight(20);
