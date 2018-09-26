@@ -1,3 +1,5 @@
+package OODProject.src;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -41,7 +43,7 @@ public class ProfessorGUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane p = new Pane();
         Pane outerPane = new Pane();
-        
+
         //Background Design
         outerPane.setStyle(backgroundColor);
 
@@ -63,17 +65,13 @@ public class ProfessorGUI extends Application {
         Background background = new Background(bGround);
 
         p.setBackground(background);
-        
+
         //Create Buttons
         Button question = new Button("  Upload\n" +
-                                          "Questions");
+                "Questions");
         Button email = new Button("Upload\n Emails");
         Button reports = new Button("  View\nReports");
-<<<<<<< HEAD
         Button send = new Button("Send Out\n Quizzes");
-=======
-        Button send = new Button(" Send Out\n     Quiz");
->>>>>>> 382d9399d1fdac81a4288905c16e4e99ca1f33e7
         Button btnHelp = new Button();
 
 
@@ -273,8 +271,7 @@ public class ProfessorGUI extends Application {
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
                 sendPane.setStyle(backgroundColor);
-                sendStage.setTitle("Send Quiz");
-                
+
                 //Button to send out quiz link
                 Button sendOut = new Button("Send");
                 sendOut.setLayoutX(400);
@@ -283,24 +280,6 @@ public class ProfessorGUI extends Application {
                 sendOut.setPrefHeight(20);
                 sendOut.setFont(Font.font(14) );
                 sendOut.setStyle(buttonStyle);
-                
-                Button cancel = new Button("Cancel");
-                cancel.setLayoutX(300);
-                cancel.setLayoutY(350);
-                cancel.setPrefWidth(80);
-                cancel.setPrefHeight(20);
-                cancel.setFont(Font.font(14) );
-                cancel.setStyle(buttonStyle);
-                
-                cancel.setOnAction(new EventHandler<ActionEvent>() {
-
-					@Override
-					public void handle(ActionEvent arg0) {
-						sendStage.close();
-						
-					}
-                	
-                });
 
                 Label timeLimit = new Label("Set Time Limit:");
                 timeLimit.setLayoutX(120);
@@ -397,11 +376,7 @@ public class ProfessorGUI extends Application {
                 });
 
 
-<<<<<<< HEAD
                 sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback, cancel);
-=======
-                sendPane.getChildren().addAll(sendOut,cancel,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback);
->>>>>>> 382d9399d1fdac81a4288905c16e4e99ca1f33e7
 
                 sendStage.setScene(sendScene);
                 sendStage.show();
