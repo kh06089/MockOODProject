@@ -1,2 +1,2 @@
-# OODProject
+# Professor
 Project for OOD
