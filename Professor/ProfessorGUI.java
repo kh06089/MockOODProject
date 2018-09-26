@@ -108,7 +108,6 @@ public class ProfessorGUI extends Application {
         send.setStyle(buttonStyle);
 
 
-
         btnHelp.setGraphic(new ImageView(help));
         btnHelp.setStyle(backgroundColor);
         btnHelp.setTooltip(helpTip);

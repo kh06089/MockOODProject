@@ -15,6 +15,7 @@ public class EZQuiz extends Application{
 	public void start(Stage stage) throws Exception {
 		//create new login page
 		LoginPage loginPage = new LoginPage();
+		stage.setTitle("Student Login");
 		
 		//create question page
 		QuestionPages qPages = new QuestionPages();
