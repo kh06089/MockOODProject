@@ -128,7 +128,7 @@ public class ProfessorGUI extends Application {
                 Pane emailsPane = new Pane();
                 Pane questionsPane = new Pane();
 
-                Image emailImg = new Image(getClass().getResourceAsStream("Professor/emails.png"));
+                Image emailImg = new Image(getClass().getResourceAsStream("emails.png"));
 
                 Button close;
 
@@ -226,30 +226,45 @@ public class ProfessorGUI extends Application {
                 Stage reportStage = new Stage();
                 reportStage.setTitle("Reports");
 
+                Button close;
                 Pane rPane = new Pane();
                 rPane.setStyle(backgroundColor);
 
-                Scene rScene = new Scene(rPane,290,90);
-
+                Scene rScene = new Scene(rPane,290,125);
                 Button responses = new Button("   Student\nResponses");
                 Button grades = new Button("Student\n Grades");
 
                 responses.setLayoutX(30);
                 responses.setLayoutY(20);
-                responses.setPrefWidth(100);
+                responses.setPrefWidth(105);
                 responses.setPrefHeight(50);
-                responses.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+                responses.setFont(Font.font("Arial", FontWeight.BOLD, 14));
                 responses.setStyle(buttonStyle);
 
                 grades.setLayoutX(160);
                 grades.setLayoutY(20);
-                grades.setPrefWidth(100);
+                grades.setPrefWidth(105);
                 grades.setPrefHeight(50);
-                grades.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+                grades.setFont(Font.font("Arial", FontWeight.BOLD, 14));
                 grades.setStyle(buttonStyle);
 
+                close = new Button("Close");
+                close.setLayoutX(115);
+                close.setLayoutY(80);
+                close.setPrefWidth(60);
+                close.setPrefHeight(20);
+                close.setFont(Font.font("Arial", 12) );
+                close.setStyle(buttonStyle);
 
-                rPane.getChildren().addAll(responses, grades);
+                close.setOnAction(new EventHandler<ActionEvent>(){
+                    @Override
+                    public void handle(ActionEvent event){
+                        reportStage.hide();
+                    }
+                });
+
+
+                rPane.getChildren().addAll(responses, grades, close);
                 reportStage.setScene(rScene);
                 reportStage.show();
 
