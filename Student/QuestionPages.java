@@ -9,11 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class QuestionPages {
 	
 	//use file to generate questions and answers
-	File txtQuestions = new File("C:\\Users\\Chino-PC\\workspace\\OOD Project\\src\\questions.txt");
+	File txtQuestions = new File("C:\\Users\\brian\\IdeaProjects\\OODProject\\Student\\questions.txt");
 
 	//use Question object to store questions and answers
 	ArrayList<Question> questions;
@@ -29,6 +31,9 @@ public class QuestionPages {
 	Button btnNext;
 
 	//previous button
+
+	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
+	String backgroundColor = "-fx-background-color: #98B4C2";
 	
 	//no arg constructor
 	public QuestionPages() {
@@ -38,8 +43,10 @@ public class QuestionPages {
 		answerBtnList = new ArrayList<>();
 		questions = new ArrayList<>();
 		btnNext = new Button("Next");
-		btnNext.setLayoutX(233);
-		btnNext.setLayoutY(352);
+		btnNext.setLayoutX(220);
+		btnNext.setLayoutY(340);
+		btnNext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+		btnNext.setStyle(buttonStyle);
 		
 		//read document when instantiated 
 		readDocument();
@@ -93,6 +100,7 @@ public class QuestionPages {
 		Pane pane = new Pane();
 		pane.setPrefHeight(385);
 		pane.setPrefWidth(290);
+		pane.setStyle(backgroundColor);
 		
 		//add the next button to the page
 		pane.getChildren().add(btnNext);
@@ -121,6 +129,7 @@ public class QuestionPages {
 				shortAnswer.setLayoutY(yPos);
 				shortAnswer.setPrefWidth(200);
 				shortAnswer.setPrefHeight(125);
+				shortAnswer.setStyle(buttonStyle +"; -fx-background-radius: 0px; -fx-border-radius: 0px");
 				pane.getChildren().add(shortAnswer);
 			} else {
 				//otherwise create a radio button for the answer

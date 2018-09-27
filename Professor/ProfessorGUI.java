@@ -128,7 +128,7 @@ public class ProfessorGUI extends Application {
                 Pane emailsPane = new Pane();
                 Pane questionsPane = new Pane();
 
-                Image emailImg = new Image(getClass().getResourceAsStream("emails.png"));
+                Image emailImg = new Image(getClass().getResourceAsStream("Professor/emails.png"));
 
                 Button close;
 
