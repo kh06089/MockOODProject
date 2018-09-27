@@ -15,7 +15,7 @@ public class EZQuiz extends Application{
 	public void start(Stage stage) throws Exception {
 		//create new login page
 		LoginPage loginPage = new LoginPage();
-		stage.setTitle("Student Login");
+		stage.setTitle("Quiz Title");
 		
 		//create question page
 		QuestionPages qPages = new QuestionPages();
@@ -26,7 +26,7 @@ public class EZQuiz extends Application{
 			@Override
 			public void handle(ActionEvent e) {
 
-				if(loginPage.getEmailField().getText().equals("Admin") && loginPage.getPswdField().getText().equals("password")) {
+				if(loginPage.getEmailField().getText().equals("1234")) {
 					qPages.generatePage(pageNum);
 					stage.setScene(qPages.getScenes().get(pageNum));
 				}

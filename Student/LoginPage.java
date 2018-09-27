@@ -12,8 +12,8 @@ import javafx.scene.text.FontWeight;
 public class LoginPage {
 	Pane pane, outerPane;
 	Scene scene;
-	TextField emailField;
-	PasswordField pswdField;
+	PasswordField codeField;
+	//PasswordField pswdField;
 	Button btnLogin;
 	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
 	String backgroundColor = "-fx-background-color: #98B4C2";
@@ -24,47 +24,47 @@ public class LoginPage {
 
 		Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", 200, 112.5, true, true);
 
-		BackgroundSize backgroundSize = new BackgroundSize(200, 112.5, false, false, false, false);
-		BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, 45, false, Side.TOP, 25, false);
+		BackgroundSize backgroundSize = new BackgroundSize(150, 84.375, false, false, false, false);
+		BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, 45, false, Side.TOP, 15, false);
 		BackgroundImage bGround = new BackgroundImage(backGrd, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,bPosition,backgroundSize);
 		Background background = new Background(bGround);
 		
-		pane.setPrefHeight(385);
-		pane.setPrefWidth(290);
+		pane.setPrefHeight(215);
+		pane.setPrefWidth(240);
 
 
-		emailField = new TextField();
-		emailField.setLayoutX(51);
-		emailField.setLayoutY(188);
-		emailField.setPrefWidth(196);
-		emailField.setStyle(buttonStyle);
+		codeField = new PasswordField();
+		codeField.setLayoutX(108);
+		codeField.setLayoutY(115);
+		codeField.setPrefWidth(100);
+		codeField.setStyle(buttonStyle);
 
 
-		Label lblEmail = new Label("Email:");
-		lblEmail.setLayoutX(51);
-		lblEmail.setLayoutY(167);
+		Label lblEmail = new Label("Quiz Code:");
+		lblEmail.setLayoutX(30);
+		lblEmail.setLayoutY(122.5);
 		lblEmail.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
-		pswdField = new PasswordField();
-		pswdField.setLayoutX(51);
-		pswdField.setLayoutY(267);
-		pswdField.setPrefWidth(196);
-		pswdField.setStyle(buttonStyle);
+		//pswdField = new PasswordField();
+		//pswdField.setLayoutX(51);
+		//pswdField.setLayoutY(267);
+		//pswdField.setPrefWidth(196);
+		//pswdField.setStyle(buttonStyle);
 
-		Label lblPassword = new Label("Password:");
-		lblPassword.setLayoutX(51);
-		lblPassword.setLayoutY(247);
-		lblPassword.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		//Label lblPassword = new Label("Password:");
+		//lblPassword.setLayoutX(51);
+		//lblPassword.setLayoutY(247);
+		//lblPassword.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
-		btnLogin = new Button("Login");
-		btnLogin.setLayoutX(80);
-		btnLogin.setLayoutY(330);
-		btnLogin.setPrefWidth(130);
+		btnLogin = new Button("Submit");
+		btnLogin.setLayoutX(70);
+		btnLogin.setLayoutY(160);
+		btnLogin.setPrefWidth(100);
 		btnLogin.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 		btnLogin.setStyle(buttonStyle);
 
 		pane.setBackground(background);
-		pane.getChildren().addAll(btnLogin, lblPassword, lblEmail, emailField, pswdField);
+		pane.getChildren().addAll(btnLogin, lblEmail, codeField);
 
 		outerPane.setStyle(backgroundColor);
 		outerPane.getChildren().addAll(pane);
@@ -82,12 +82,12 @@ public class LoginPage {
 	}
 
 	public TextField getEmailField() {
-		return emailField;
+		return codeField;
 	}
 
-	public PasswordField getPswdField() {
-		return pswdField;
-	}
+	//public PasswordField getPswdField() {
+	//	return pswdField;
+	//}
 	public Button getBtnLogin() {
 		return btnLogin;
 	}
