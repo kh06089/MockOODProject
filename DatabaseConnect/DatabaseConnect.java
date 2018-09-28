@@ -11,7 +11,7 @@ public class DatabaseConnect {
 		Class.forName("org.postgresql.Driver");
 		Connection connect = DriverManager.getConnection
 				("jdbc:postgresql://georgiasouthern.chqyded5qfex.us-east-1.rds.amazonaws.com:5432/harrisgs?currentSchema=public",
-						"as12660", "OODProject");
+						"harris", "gsouthern");
 		Statement st = connect.createStatement();
 		
 		//Query
