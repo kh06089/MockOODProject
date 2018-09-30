@@ -34,6 +34,10 @@ public class QuestionPages {
 
 	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
 	String backgroundColor = "-fx-background-color: #98B4C2";
+
+	private double paneWidth = 500;
+	private double paneHeight = 300;
+	int count = 0;
 	
 	//no arg constructor
 	public QuestionPages() {
@@ -43,8 +47,10 @@ public class QuestionPages {
 		answerBtnList = new ArrayList<>();
 		questions = new ArrayList<>();
 		btnNext = new Button("Next");
-		btnNext.setLayoutX(220);
-		btnNext.setLayoutY(340);
+		btnNext.setPrefWidth(80);
+		btnNext.setPrefHeight(40);
+		btnNext.setLayoutX(paneWidth - 95);
+		btnNext.setLayoutY(paneHeight - 55);
 		btnNext.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 		btnNext.setStyle(buttonStyle);
 		
@@ -59,25 +65,29 @@ public class QuestionPages {
 		
 		//string to hold value of line read
 		String line;
-		
+
+
 		//catch file not found exceptions
 		try {
 			//create file readers
 			FileReader fileReader = new FileReader(txtQuestions);
 			BufferedReader txtReader = new BufferedReader(fileReader);
 
+
 			//loop through every line of the file
 			while ((line = txtReader.readLine()) != null) {
 				
 				//line must contain a ? to be read as a question
 				if (line.contains("?")) {
-					//if the line is to long make it multiline 
-					if (line.length() > 45) {
-						line = line.substring(0, line.lastIndexOf(" ", 30)) + "\n "
-								+ line.substring(line.lastIndexOf(" ", 30));
+					//Increment count for question number
+					count++;
+					//if the line is too long make it multiline
+					if (line.length() > 100) {
+						line = line.substring(0, line.lastIndexOf(" ", 90)) + "\n"
+								+ line.substring(line.lastIndexOf("", 88));
 					}
 					//add new question to question arraylist
-					questions.add(new Question(line));
+					questions.add(new Question("Question " + count + ":\n" + line));
 				}
 				//if the line has no question mark and isn't a blank line
 				else if (!line.contains("?") && !line.isEmpty()) {
@@ -98,8 +108,8 @@ public class QuestionPages {
 		
 		//create new pane and set the dimensions
 		Pane pane = new Pane();
-		pane.setPrefHeight(385);
-		pane.setPrefWidth(290);
+		pane.setPrefHeight(paneHeight);
+		pane.setPrefWidth(paneWidth);
 		pane.setStyle(backgroundColor);
 		
 		//add the next button to the page
@@ -108,7 +118,7 @@ public class QuestionPages {
 		//create label for question
 		Label question = new Label(questions.get(index).question);
 		question.setLayoutX(15);
-		question.setLayoutY(75);
+		question.setLayoutY(15);
 		
 		//add question to pane
 		pane.getChildren().add(question);
@@ -124,11 +134,11 @@ public class QuestionPages {
 			// if the answer is a # create a text area
 			if (questions.get(index).answers.get(i).equals("#")) {
 				TextArea shortAnswer = new TextArea();
-				shortAnswer.setLayoutX(question.getLayoutX() + 20);
+				shortAnswer.setLayoutX(35);
 				shortAnswer.wrapTextProperty();
 				shortAnswer.setLayoutY(yPos);
-				shortAnswer.setPrefWidth(200);
-				shortAnswer.setPrefHeight(125);
+				shortAnswer.setPrefWidth(paneWidth - 70);
+				shortAnswer.setPrefHeight(paneHeight - 160);
 				shortAnswer.setStyle(buttonStyle +"; -fx-background-radius: 0px; -fx-border-radius: 0px");
 				pane.getChildren().add(shortAnswer);
 			} else {
