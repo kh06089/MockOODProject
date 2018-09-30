@@ -1,9 +1,6 @@
 import javafx.geometry.Side;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -38,6 +35,14 @@ public class LoginPage {
 		codeField.setLayoutY(115);
 		codeField.setPrefWidth(100);
 		codeField.setStyle(buttonStyle);
+		codeField.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+			String newText = change.getControlNewText();
+			if (newText.length() > 4) {
+				return null ;
+			} else {
+				return change ;
+			}
+		}));
 
 
 		Label lblEmail = new Label("Quiz Code:");
