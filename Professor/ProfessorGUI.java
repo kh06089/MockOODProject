@@ -11,14 +11,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter.Change;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +35,13 @@ public class ProfessorGUI extends Application {
     private Desktop desktop = Desktop.getDesktop();
     private String backgroundColor = "-fx-background-color: #041E42";
     private String buttonStyle = " -fx-background-radius: 30px;";
+    //Adds shadow effect to buttons when hovered over
+    Color colorOn = new Color(0.5843, 0.4902, 0.2471, 1);
+    Color colorOff = new Color(0.5, 0.5, 0.5, 0);
 
+    DropShadow shadowOn = new DropShadow(20, colorOn);
+
+    DropShadow shadowOff = new DropShadow(20, colorOff);
 
 
     public static void main(String[] args) {
@@ -51,7 +62,7 @@ public class ProfessorGUI extends Application {
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", bGroundWidth, bGroundHeight, true, true);
         Image help = new Image(getClass().getResourceAsStream("help.png"), 25, 25, false, true);
 
-
+        shadowOn.setSpread(0.6);
 
         FileChooser fileChooser = new FileChooser();
 
@@ -96,30 +107,53 @@ public class ProfessorGUI extends Application {
         question.setPrefWidth(120);
         question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         question.setStyle(buttonStyle);
+        question.setOnMouseEntered(e -> question.setEffect(shadowOn));
+        question.setOnMouseExited(e -> question.setEffect(shadowOff));
 
         email.setPrefWidth(120);
         email.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         email.setStyle(buttonStyle);
-
+        email.setOnMouseEntered(e -> email.setEffect(shadowOn));
+        email.setOnMouseExited(e -> email.setEffect(shadowOff));
 
         reports.setPrefWidth(120);
         reports.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         reports.setStyle(buttonStyle);
-
+        reports.setOnMouseEntered(e -> reports.setEffect(shadowOn));
+        reports.setOnMouseExited(e -> reports.setEffect(shadowOff));
 
         send.setPrefWidth(120);
         send.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         send.setStyle(buttonStyle);
-
+        send.setOnMouseEntered(e -> send.setEffect(shadowOn));
+        send.setOnMouseExited(e -> send.setEffect(shadowOff));
 
         btnHelp.setGraphic(new ImageView(help));
-        btnHelp.setStyle(backgroundColor);
+        btnHelp.setStyle("-fx-background-color: transparent");
         btnHelp.setTooltip(helpTip);
+        btnHelp.setOnMouseEntered(e -> btnHelp.setEffect(shadowOn));
+        btnHelp.setOnMouseExited(e -> btnHelp.setEffect(shadowOff));
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        btnHelp.setOnMousePressed(e -> btnHelp.setStyle("-fx-background-color: transparent; -fx-padding: 6 4 4 6;"));
+        btnHelp.setOnMouseReleased(e -> btnHelp.setStyle("-fx-background-color: transparent; -fx-padding: 5 5 5 5;"));
 
 
         btnHelp.setOnAction(new EventHandler<ActionEvent>(){
