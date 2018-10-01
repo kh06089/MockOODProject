@@ -144,8 +144,8 @@ public class ProfessorGUI extends Application {
                 Button close;
 
 
-                emailsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px; -fx-background-color: #98B4C2;");
-                questionsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px; -fx-background-color: #98B4C2;");
+                emailsPane.setStyle(backgroundColor);
+                questionsPane.setStyle(backgroundColor);
 
                 Scene rScene = new Scene(rPane,1000,460);
 
@@ -161,9 +161,10 @@ public class ProfessorGUI extends Application {
                 questionsPane.setLayoutY(10);
 
                 Label emailLabel = new Label("Email Text Format");
-                emailLabel.setLayoutX(170);
-                emailLabel.setLayoutY(9);
-                emailLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+                emailLabel.setLayoutX(165);
+                emailLabel.setLayoutY(3);
+                emailLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+                emailLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 ImageView emailView = new ImageView(emailFmt);
                 emailView.setFitWidth(emailsPane.getPrefWidth() * 0.95);
@@ -172,9 +173,10 @@ public class ProfessorGUI extends Application {
                 emailView.setY(emailsPane.getLayoutY()+20);
 
                 Label questLabel = new Label("Question Text Format");
-                questLabel.setLayoutX(170);
-                questLabel.setLayoutY(9);
-                questLabel.setFont(Font.font("Arial", FontWeight.BLACK,14));
+                questLabel.setLayoutX(155);
+                questLabel.setLayoutY(3);
+                questLabel.setFont(Font.font("Arial", FontWeight.BLACK,18));
+                questLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 ImageView questionView = new ImageView(questionFmt);
                 questionView.setFitWidth(questionsPane.getPrefWidth() * 0.95);
@@ -189,7 +191,7 @@ public class ProfessorGUI extends Application {
                 close.setPrefHeight(30);
                 close.setLayoutX((rScene.getWidth()-closeWidth)/2);
                 close.setLayoutY(415);
-                close.setFont(Font.font(14) );
+                close.setFont(Font.font("Arial", FontWeight.BOLD, 16) );
                 close.setStyle(buttonStyle);
 
                 close.setOnAction(new EventHandler<ActionEvent>(){
@@ -249,6 +251,7 @@ public class ProfessorGUI extends Application {
                 Pane rPane = new Pane();
                 rPane.setStyle(backgroundColor);
 
+
                 Scene rScene = new Scene(rPane,290,125);
                 Button responses = new Button("   Student\nResponses");
                 Button grades = new Button("Student\n Grades");
@@ -297,6 +300,8 @@ public class ProfessorGUI extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                double textLayoutX = 100;
+
                 Stage sendStage = new Stage();
                 Pane sendPane = new Pane();
                 Scene sendScene = new Scene(sendPane,500,400);
@@ -313,61 +318,61 @@ public class ProfessorGUI extends Application {
                 sendOut.setStyle(buttonStyle);
 
                 Label timeLimit = new Label("Set Time Limit:");
-                timeLimit.setLayoutX(120);
+                timeLimit.setLayoutX(textLayoutX);
                 timeLimit.setLayoutY(20);
                 timeLimit.setFont(Font.font("Arial", FontWeight.BOLD, 24));
                 timeLimit.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label qcode = new Label("Set Quiz Code:");
-                qcode.setLayoutX(120);
+                qcode.setLayoutX(textLayoutX);
                 qcode.setLayoutY(130);
                 qcode.setFont(Font.font("Arial", FontWeight.BOLD, 24));
                 qcode.setTextFill(Paint.valueOf("#FFFFFF"));
 
 
                 Label feedback = new Label("Set Feedback Option:");
-                feedback.setLayoutX(120);
+                feedback.setLayoutX(textLayoutX);
                 feedback.setLayoutY(210);
                 feedback.setFont(Font.font("Arial", FontWeight.BOLD, 24));
                 feedback.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label dayLabel = new Label("Days:");
-                dayLabel.setLayoutX(120);
+                dayLabel.setLayoutX(textLayoutX);
                 dayLabel.setLayoutY(60);
                 dayLabel.setFont(Font.font("Arial",14));
                 dayLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label hourLabel = new Label("Hours:");
-                hourLabel.setLayoutX(215);
+                hourLabel.setLayoutX(textLayoutX + 95);
                 hourLabel.setLayoutY(60);
                 hourLabel.setFont(Font.font("Arial",14));
                 hourLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label minLabel = new Label("Minutes:");
-                minLabel.setLayoutX(310);
+                minLabel.setLayoutX(textLayoutX + 190);
                 minLabel.setLayoutY(60);
                 minLabel.setFont(Font.font("Arial", 14));
                 minLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 //Boxes to set Time Limit
                 ComboBox<Integer> days = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
-                days.setLayoutX(120);
+                days.setLayoutX(textLayoutX);
                 days.setLayoutY(82);
                 days.setStyle(buttonStyle + "-fx-font-size: 14px");
 
                 ComboBox<Integer> hours = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24));
-                hours.setLayoutX(215);
+                hours.setLayoutX(textLayoutX + 95);
                 hours.setLayoutY(82);
                 hours.setStyle(buttonStyle + "-fx-font-size: 14px");
 
                 ComboBox<Integer> mins = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
-                mins.setLayoutX(310);
+                mins.setLayoutX(textLayoutX + 190);
                 mins.setLayoutY(82);
                 mins.setStyle(buttonStyle + "-fx-font-size: 14px");
 
 
                 TextField quizCode = new TextField();
-                quizCode.setLayoutX(120);
+                quizCode.setLayoutX(textLayoutX);
                 quizCode.setLayoutY(164);
                 quizCode.setStyle(buttonStyle + "-fx-font-size: 14px");
                 quizCode.setTextFormatter(new TextFormatter<String>((Change change) -> {
@@ -395,9 +400,9 @@ public class ProfessorGUI extends Application {
                 rb3.setToggleGroup(group);
                 rb3.setFont(Font.font("Arial", 14));
 
-                rb1.setLayoutX(120);
-                rb2.setLayoutX(120);
-                rb3.setLayoutX(120);
+                rb1.setLayoutX(textLayoutX);
+                rb2.setLayoutX(textLayoutX);
+                rb3.setLayoutX(textLayoutX);
 
                 rb1.setLayoutY(245);
                 rb2.setLayoutY(275);
