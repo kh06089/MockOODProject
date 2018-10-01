@@ -14,6 +14,7 @@ import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
@@ -27,8 +28,9 @@ public class ProfessorGUI extends Application {
     private double bGroundWidth = 200;
     private double bGroundHeight = 112.5;
     private Desktop desktop = Desktop.getDesktop();
-    private String backgroundColor = "-fx-background-color: #98B4C2";
-    private String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
+    private String backgroundColor = "-fx-background-color: #041E42";
+    private String buttonStyle = " -fx-background-radius: 30px;";
+
 
 
     public static void main(String[] args) {
@@ -40,6 +42,8 @@ public class ProfessorGUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane p = new Pane();
         Pane outerPane = new Pane();
+
+        Scene s = new Scene(outerPane,400,335);
 
         //Background Design
         outerPane.setStyle(backgroundColor);
@@ -77,10 +81,10 @@ public class ProfessorGUI extends Application {
         helpTip.setText("Text File Format Help");
 
         //Set Location and size of buttons
-        question.setLayoutX(70);
-        email.setLayoutX(230);
-        reports.setLayoutX(70);
-        send.setLayoutX(230);
+        question.setLayoutX(s.getWidth()/2-135);
+        email.setLayoutX(s.getWidth()/2+15);
+        reports.setLayoutX(s.getWidth()/2-135);
+        send.setLayoutX(s.getWidth()/2+15);
         btnHelp.setLayoutX(0);
 
         question.setLayoutY(160);
@@ -89,22 +93,22 @@ public class ProfessorGUI extends Application {
         send.setLayoutY(240);
         btnHelp.setLayoutY(0);
 
-        question.setPrefWidth(100);
-        question.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        question.setPrefWidth(120);
+        question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         question.setStyle(buttonStyle);
 
-        email.setPrefWidth(100);
-        email.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        email.setPrefWidth(120);
+        email.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         email.setStyle(buttonStyle);
 
 
-        reports.setPrefWidth(100);
-        reports.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        reports.setPrefWidth(120);
+        reports.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         reports.setStyle(buttonStyle);
 
 
-        send.setPrefWidth(100);
-        send.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        send.setPrefWidth(120);
+        send.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         send.setStyle(buttonStyle);
 
 
@@ -124,52 +128,67 @@ public class ProfessorGUI extends Application {
                 Stage helpStage = new Stage();
                 helpStage.setTitle("File Formats");
 
+
+
                 Pane rPane = new Pane();
                 Pane emailsPane = new Pane();
                 Pane questionsPane = new Pane();
 
-                Image emailImg = new Image(getClass().getResourceAsStream("emails.png"));
+                Image emailFmt = new Image(getClass().getResourceAsStream("emailFormat.png"));
+                Image questionFmt = new Image(getClass().getResourceAsStream("questionFormat.png"));
+
+
+
+                double qImageHeight = questionFmt.getHeight()*0.62;
 
                 Button close;
 
-                BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, true, false);
-                BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, 0, false, Side.TOP, 30, false);
-                BackgroundImage bGround = new BackgroundImage(emailImg, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,bPosition,backgroundSize);
-                Background background = new Background(bGround);
 
-                emailsPane.setBackground(background);
-                emailsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px;");
+                emailsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px; -fx-background-color: #98B4C2;");
+                questionsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px; -fx-background-color: #98B4C2;");
+
+                Scene rScene = new Scene(rPane,1000,460);
 
 
-                questionsPane.setStyle("-fx-border-color: #14336C; -fx-border-width: 3px;");
-                Scene rScene = new Scene(rPane,300,450);
-
-
-                emailsPane.setPrefWidth(280);
-                emailsPane.setPrefHeight(190);
+                emailsPane.setPrefWidth(480);
+                emailsPane.setPrefHeight(400);
                 emailsPane.setLayoutX(10);
                 emailsPane.setLayoutY(10);
 
-                questionsPane.setPrefWidth(280);
-                questionsPane.setPrefHeight(190);
-                questionsPane.setLayoutX(10);
-                questionsPane.setLayoutY(210);
+                questionsPane.setPrefWidth(480);
+                questionsPane.setPrefHeight(400);
+                questionsPane.setLayoutX(510);
+                questionsPane.setLayoutY(10);
 
                 Label emailLabel = new Label("Email Text Format");
-                emailLabel.setLayoutX(80);
+                emailLabel.setLayoutX(170);
                 emailLabel.setLayoutY(9);
                 emailLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
+                ImageView emailView = new ImageView(emailFmt);
+                emailView.setFitWidth(emailsPane.getPrefWidth() * 0.95);
+                emailView.setFitHeight(emailsPane.getPrefHeight()-42);
+                emailView.setX((emailsPane.getPrefWidth()*0.025));
+                emailView.setY(emailsPane.getLayoutY()+20);
+
                 Label questLabel = new Label("Question Text Format");
-                questLabel.setLayoutX(75);
+                questLabel.setLayoutX(170);
                 questLabel.setLayoutY(9);
                 questLabel.setFont(Font.font("Arial", FontWeight.BLACK,14));
 
+                ImageView questionView = new ImageView(questionFmt);
+                questionView.setFitWidth(questionsPane.getPrefWidth() * 0.95);
+                questionView.setFitHeight(questionsPane.getPrefHeight()-42);
+                questionView.setX(questionsPane.getLayoutX() + (questionsPane.getPrefWidth()*0.025));
+                questionView.setY(questionsPane.getLayoutY()+30);
+
+
+                double closeWidth = 80;
                 close = new Button("Close");
-                close.setLayoutX(110);
-                close.setLayoutY(405);
                 close.setPrefWidth(80);
                 close.setPrefHeight(30);
+                close.setLayoutX((rScene.getWidth()-closeWidth)/2);
+                close.setLayoutY(415);
                 close.setFont(Font.font(14) );
                 close.setStyle(buttonStyle);
 
@@ -185,11 +204,11 @@ public class ProfessorGUI extends Application {
 
 
 
-                emailsPane.getChildren().addAll(emailLabel);
+                emailsPane.getChildren().addAll(emailLabel, emailView);
                 questionsPane.getChildren().addAll(questLabel);
 
                 rPane.setStyle(backgroundColor);
-                rPane.getChildren().addAll(emailsPane,questionsPane, close);
+                rPane.getChildren().addAll(emailsPane,questionsPane, close, questionView);
                 helpStage.setScene(rScene);
                 helpStage.show();
             }
@@ -290,58 +309,67 @@ public class ProfessorGUI extends Application {
                 sendOut.setLayoutY(350);
                 sendOut.setPrefWidth(80);
                 sendOut.setPrefHeight(20);
-                sendOut.setFont(Font.font(14) );
+                sendOut.setFont(Font.font("Arial", FontWeight.BOLD, 18));
                 sendOut.setStyle(buttonStyle);
 
                 Label timeLimit = new Label("Set Time Limit:");
                 timeLimit.setLayoutX(120);
-                timeLimit.setLayoutY(65);
-                timeLimit.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+                timeLimit.setLayoutY(20);
+                timeLimit.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+                timeLimit.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label qcode = new Label("Set Quiz Code:");
                 qcode.setLayoutX(120);
-                qcode.setLayoutY(160);
-                qcode.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+                qcode.setLayoutY(130);
+                qcode.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+                qcode.setTextFill(Paint.valueOf("#FFFFFF"));
 
 
                 Label feedback = new Label("Set Feedback Option:");
                 feedback.setLayoutX(120);
-                feedback.setLayoutY(230);
-                feedback.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+                feedback.setLayoutY(210);
+                feedback.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+                feedback.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label dayLabel = new Label("Days:");
                 dayLabel.setLayoutX(120);
-                dayLabel.setLayoutY(90);
+                dayLabel.setLayoutY(60);
+                dayLabel.setFont(Font.font("Arial",14));
+                dayLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label hourLabel = new Label("Hours:");
-                hourLabel.setLayoutX(190);
-                hourLabel.setLayoutY(90);
+                hourLabel.setLayoutX(215);
+                hourLabel.setLayoutY(60);
+                hourLabel.setFont(Font.font("Arial",14));
+                hourLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 Label minLabel = new Label("Minutes:");
-                minLabel.setLayoutX(260);
-                minLabel.setLayoutY(90);
+                minLabel.setLayoutX(310);
+                minLabel.setLayoutY(60);
+                minLabel.setFont(Font.font("Arial", 14));
+                minLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 //Boxes to set Time Limit
                 ComboBox<Integer> days = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
                 days.setLayoutX(120);
-                days.setLayoutY(110);
-                days.setStyle(buttonStyle);
+                days.setLayoutY(82);
+                days.setStyle(buttonStyle + "-fx-font-size: 14px");
 
                 ComboBox<Integer> hours = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24));
-                hours.setLayoutX(190);
-                hours.setLayoutY(110);
-                hours.setStyle(buttonStyle);
+                hours.setLayoutX(215);
+                hours.setLayoutY(82);
+                hours.setStyle(buttonStyle + "-fx-font-size: 14px");
 
                 ComboBox<Integer> mins = new ComboBox<Integer>(FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59));
-                mins.setLayoutX(260);
-                mins.setLayoutY(110);
-                mins.setStyle(buttonStyle);
+                mins.setLayoutX(310);
+                mins.setLayoutY(82);
+                mins.setStyle(buttonStyle + "-fx-font-size: 14px");
 
 
                 TextField quizCode = new TextField();
                 quizCode.setLayoutX(120);
-                quizCode.setLayoutY(185);
-                quizCode.setStyle(buttonStyle);
+                quizCode.setLayoutY(164);
+                quizCode.setStyle(buttonStyle + "-fx-font-size: 14px");
                 quizCode.setTextFormatter(new TextFormatter<String>((Change change) -> {
                     String newText = change.getControlNewText();
                     if (newText.length() > 4) {
@@ -355,28 +383,37 @@ public class ProfessorGUI extends Application {
 
                 RadioButton rb1 = new RadioButton("Provide feedback with all questions.");
                 rb1.setToggleGroup(group);
+                rb1.setFont(Font.font("Arial", 14));
                 rb1.setSelected(true);
 
                 RadioButton rb2 = new RadioButton("Provide feedback with only incorrect answers.");
                 rb2.setToggleGroup(group);
+                rb2.setFont(Font.font("Arial", 14));
+
+
                 RadioButton rb3 = new RadioButton("Provide feeedback with only correct answers.");
                 rb3.setToggleGroup(group);
+                rb3.setFont(Font.font("Arial", 14));
 
                 rb1.setLayoutX(120);
                 rb2.setLayoutX(120);
                 rb3.setLayoutX(120);
 
-                rb1.setLayoutY(255);
-                rb2.setLayoutY(280);
+                rb1.setLayoutY(245);
+                rb2.setLayoutY(275);
                 rb3.setLayoutY(305);
+
+                rb1.setTextFill(Paint.valueOf("#FFFFFF"));
+                rb2.setTextFill(Paint.valueOf("#FFFFFF"));
+                rb3.setTextFill(Paint.valueOf("#FFFFFF"));
 
                 //Button gives option to return to last stage
                 Button cancel = new Button("Cancel");
-                cancel.setLayoutX(300);
+                cancel.setLayoutX(285);
                 cancel.setLayoutY(350);
-                cancel.setPrefWidth(80);
+                cancel.setPrefWidth(90);
                 cancel.setPrefHeight(20);
-                cancel.setFont(Font.font(14));
+                cancel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
                 cancel.setStyle(buttonStyle);
 
                 cancel.setOnAction(new EventHandler<ActionEvent>(){
@@ -401,7 +438,7 @@ public class ProfessorGUI extends Application {
         p.getChildren().addAll(question,email,reports,send,btnHelp);
         outerPane.getChildren().add(p);
 
-        Scene s = new Scene(outerPane,400,335);
+
 
         primaryStage.setScene(s);
         primaryStage.show();
