@@ -61,7 +61,7 @@ public class ProfessorGUI extends Application {
         Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", bGroundWidth, bGroundHeight, true, true);
         Image help = new Image(getClass().getResourceAsStream("help.png"), 25, 25, false, true);
 
-        shadowOn.setSpread(0.6);
+        shadowOn.setSpread(0.7);
 
         FileChooser fileChooser = new FileChooser();
 
@@ -106,26 +106,26 @@ public class ProfessorGUI extends Application {
         question.setPrefWidth(120);
         question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         question.setStyle(buttonStyle);
-        question.setOnMouseEntered(e -> question.setEffect(shadowOn));
-        question.setOnMouseExited(e -> question.setEffect(shadowOff));
+        question.setOnMouseEntered(e -> question.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+        question.setOnMouseExited(e -> question.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
         email.setPrefWidth(120);
         email.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         email.setStyle(buttonStyle);
-        email.setOnMouseEntered(e -> email.setEffect(shadowOn));
-        email.setOnMouseExited(e -> email.setEffect(shadowOff));
+        email.setOnMouseEntered(e -> email.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+        email.setOnMouseExited(e -> email.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
         reports.setPrefWidth(120);
         reports.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         reports.setStyle(buttonStyle);
-        reports.setOnMouseEntered(e -> reports.setEffect(shadowOn));
-        reports.setOnMouseExited(e -> reports.setEffect(shadowOff));
+        reports.setOnMouseEntered(e -> reports.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+        reports.setOnMouseExited(e -> reports.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
         send.setPrefWidth(120);
         send.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         send.setStyle(buttonStyle);
-        send.setOnMouseEntered(e -> send.setEffect(shadowOn));
-        send.setOnMouseExited(e -> send.setEffect(shadowOff));
+        send.setOnMouseEntered(e -> send.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+        send.setOnMouseExited(e -> send.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
         btnHelp.setGraphic(new ImageView(help));
         btnHelp.setStyle("-fx-background-color: transparent");
@@ -200,8 +200,8 @@ public class ProfessorGUI extends Application {
                 close.setFont(Font.font("Arial", FontWeight.BOLD, 16));
                 close.setStyle(buttonStyle);
                 close.setOnAction(event1 -> helpStage.hide());
-                close.setOnMouseEntered(e -> close.setEffect(shadowOn));
-                close.setOnMouseExited(e -> close.setEffect(shadowOff));
+                close.setOnMouseEntered(e -> close.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+                close.setOnMouseExited(e -> close.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
 
                 emailsPane.getChildren().addAll(emailLabel, emailView);
@@ -248,18 +248,9 @@ public class ProfessorGUI extends Application {
 
             Stage sendStage = new Stage();
             Pane sendPane = new Pane();
-            Scene sendScene = new Scene(sendPane,500,400);
+            Scene sendScene = new Scene(sendPane, 500, 400);
             sendPane.setStyle(backgroundColor);
             sendStage.setTitle("Send Quiz");
-
-            //Button to send out quiz link
-            Button sendOut = new Button("Send");
-            sendOut.setLayoutX(400);
-            sendOut.setLayoutY(350);
-            sendOut.setPrefWidth(80);
-            sendOut.setPrefHeight(20);
-            sendOut.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-            sendOut.setStyle(buttonStyle);
 
             Label timeLimit = new Label("Set Time Limit:");
             timeLimit.setLayoutX(textLayoutX);
@@ -283,13 +274,13 @@ public class ProfessorGUI extends Application {
             Label dayLabel = new Label("Days:");
             dayLabel.setLayoutX(textLayoutX);
             dayLabel.setLayoutY(60);
-            dayLabel.setFont(Font.font("Arial",14));
+            dayLabel.setFont(Font.font("Arial", 14));
             dayLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
             Label hourLabel = new Label("Hours:");
             hourLabel.setLayoutX(textLayoutX + 95);
             hourLabel.setLayoutY(60);
-            hourLabel.setFont(Font.font("Arial",14));
+            hourLabel.setFont(Font.font("Arial", 14));
             hourLabel.setTextFill(Paint.valueOf("#FFFFFF"));
 
             Label minLabel = new Label("Minutes:");
@@ -322,14 +313,13 @@ public class ProfessorGUI extends Application {
             quizCode.setTextFormatter(new TextFormatter<String>((Change change) -> {
                 String newText = change.getControlNewText();
                 if (newText.length() > 4) {
-                    return null ;
+                    return null;
                 } else {
-                    return change ;
+                    return change;
                 }
             }));
             //FeedBack Options
             final ToggleGroup group = new ToggleGroup();
-
             RadioButton rb1 = new RadioButton("Provide feedback with all questions.");
             rb1.setToggleGroup(group);
             rb1.setFont(Font.font("Arial", 14));
@@ -364,11 +354,24 @@ public class ProfessorGUI extends Application {
             cancel.setPrefHeight(20);
             cancel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
             cancel.setStyle(buttonStyle);
-
+            cancel.setOnMouseEntered(e ->
+                cancel.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+            cancel.setOnMouseExited(e -> cancel.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
             cancel.setOnAction(event12 -> {
                 sendStage.hide();
                 primaryStage.show();
             });
+
+            //Button to send out quiz link
+            Button sendOut = new Button("Send");
+            sendOut.setLayoutX(400);
+            sendOut.setLayoutY(350);
+            sendOut.setPrefWidth(80);
+            sendOut.setPrefHeight(20);
+            sendOut.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+            sendOut.setStyle(buttonStyle);
+            sendOut.setOnMouseEntered(e -> sendOut.setStyle("-fx-base: #957D3F; -fx-background-radius: 30px;"));
+            sendOut.setOnMouseExited(e -> sendOut.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
 
             sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback, cancel);
