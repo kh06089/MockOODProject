@@ -1,8 +1,11 @@
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -12,26 +15,31 @@ public class LoginPage {
 	PasswordField codeField;
 	//PasswordField pswdField;
 	Button btnLogin;
-	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
-	String backgroundColor = "-fx-background-color: #98B4C2";
+	String buttonStyle = " -fx-background-radius: 25px; -fx-background-insets: 0";
+	private String backgroundColor = "-fx-background-color: #041E42";
+
+	//Adds shadow effect to buttons when hovered over
+	private Color colorOn = new Color(0.5843, 0.4902, 0.2471, 1);
+	private Color colorOff = new Color(0.5, 0.5, 0.5, 0);
+	private DropShadow shadowOn = new DropShadow(20, colorOn);
+	private DropShadow shadowOff = new DropShadow(20, colorOff);
 	
 	public LoginPage() {
 		pane = new Pane();
 		outerPane = new Pane();
 
+		//Create Georgia Southern background image in pane
 		Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", 200, 112.5, true, true);
-
 		BackgroundSize backgroundSize = new BackgroundSize(150, 84.375, false, false, false, false);
 		BackgroundPosition bPosition = new BackgroundPosition(Side.LEFT, 45, false, Side.TOP, 15, false);
 		BackgroundImage bGround = new BackgroundImage(backGrd, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,bPosition,backgroundSize);
 		Background background = new Background(bGround);
-		
+
 		pane.setPrefHeight(215);
 		pane.setPrefWidth(240);
 
-
 		codeField = new PasswordField();
-		codeField.setLayoutX(108);
+		codeField.setLayoutX(113);
 		codeField.setLayoutY(115);
 		codeField.setPrefWidth(100);
 		codeField.setStyle(buttonStyle);
@@ -45,31 +53,27 @@ public class LoginPage {
 		}));
 
 
-		Label lblEmail = new Label("Quiz Code:");
-		lblEmail.setLayoutX(30);
-		lblEmail.setLayoutY(122.5);
-		lblEmail.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		Label lblCode = new Label("Quiz Code:");
+		lblCode.setLayoutX(25);
+		lblCode.setLayoutY(117.5);
+		lblCode.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+		lblCode.setTextFill(Paint.valueOf("WHITE"));
 
-		//pswdField = new PasswordField();
-		//pswdField.setLayoutX(51);
-		//pswdField.setLayoutY(267);
-		//pswdField.setPrefWidth(196);
-		//pswdField.setStyle(buttonStyle);
 
-		//Label lblPassword = new Label("Password:");
-		//lblPassword.setLayoutX(51);
-		//lblPassword.setLayoutY(247);
-		//lblPassword.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		shadowOn.setSpread(0.6);
 
+		//Create button to login to quiz
 		btnLogin = new Button("Submit");
 		btnLogin.setLayoutX(70);
 		btnLogin.setLayoutY(160);
 		btnLogin.setPrefWidth(100);
 		btnLogin.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 		btnLogin.setStyle(buttonStyle);
+		btnLogin.setOnMouseEntered(e -> btnLogin.setEffect(shadowOn));
+		btnLogin.setOnMouseExited(e -> btnLogin.setEffect(shadowOff));
 
 		pane.setBackground(background);
-		pane.getChildren().addAll(btnLogin, lblEmail, codeField);
+		pane.getChildren().addAll(btnLogin, lblCode, codeField);
 
 		outerPane.setStyle(backgroundColor);
 		outerPane.getChildren().addAll(pane);
