@@ -35,7 +35,7 @@ public class QuestionPages {
 	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
 	String backgroundColor = "-fx-background-color: #98B4C2";
 
-	private double paneWidth = 500;
+	private double paneWidth = 400;
 	private double paneHeight = 300;
 	int count = 0;
 	
@@ -82,9 +82,9 @@ public class QuestionPages {
 					//Increment count for question number
 					count++;
 					//if the line is too long make it multiline
-					if (line.length() > 100) {
-						line = line.substring(0, line.lastIndexOf(" ", 90)) + "\n"
-								+ line.substring(line.lastIndexOf("", 88));
+					if (line.length() > 70) {
+						line = line.substring(0, line.lastIndexOf(" ", 70)) + "\n"
+								+ line.substring(line.lastIndexOf("", 67));
 					}
 					//add new question to question arraylist
 					questions.add(new Question("Question " + count + ":\n" + line));

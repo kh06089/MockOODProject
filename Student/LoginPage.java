@@ -10,13 +10,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class LoginPage {
-	Pane pane, outerPane;
-	Scene scene;
-	PasswordField codeField;
-	//PasswordField pswdField;
-	Button btnLogin;
-	String buttonStyle = " -fx-background-radius: 25px; -fx-background-insets: 0";
-	private String backgroundColor = "-fx-background-color: #041E42";
+
+	private Pane pane;
+	private Scene scene;
+	private PasswordField codeField;
+	private Button btnLogin;
 
 	//Adds shadow effect to buttons when hovered over
 	private Color colorOn = new Color(0.5843, 0.4902, 0.2471, 1);
@@ -26,7 +24,10 @@ public class LoginPage {
 	
 	public LoginPage() {
 		pane = new Pane();
-		outerPane = new Pane();
+		Pane outerPane = new Pane();
+
+		String buttonStyle = " -fx-background-radius: 25px; -fx-background-insets: 0";
+		String backgroundColor = "-fx-background-color: #041E42";
 
 		//Create Georgia Southern background image in pane
 		Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", 200, 112.5, true, true);
@@ -42,6 +43,7 @@ public class LoginPage {
 		codeField.setLayoutX(113);
 		codeField.setLayoutY(115);
 		codeField.setPrefWidth(100);
+
 		codeField.setStyle(buttonStyle);
 		codeField.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
 			String newText = change.getControlNewText();
@@ -75,6 +77,7 @@ public class LoginPage {
 		pane.setBackground(background);
 		pane.getChildren().addAll(btnLogin, lblCode, codeField);
 
+
 		outerPane.setStyle(backgroundColor);
 		outerPane.getChildren().addAll(pane);
 
@@ -94,9 +97,9 @@ public class LoginPage {
 		return codeField;
 	}
 
-	//public PasswordField getPswdField() {
-	//	return pswdField;
-	//}
+	public PasswordField getCodeField() {
+		return codeField;
+	}
 	public Button getBtnLogin() {
 		return btnLogin;
 	}
