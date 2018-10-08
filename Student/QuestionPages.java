@@ -38,6 +38,7 @@ public class QuestionPages {
 	private double paneWidth = 400;
 	private double paneHeight = 300;
 	int count = 0;
+	int lineLength = 0;
 	
 	//no arg constructor
 	public QuestionPages() {
@@ -82,9 +83,9 @@ public class QuestionPages {
 					//Increment count for question number
 					count++;
 					//if the line is too long make it multiline
-					if (line.length() > 70) {
-						line = line.substring(0, line.lastIndexOf(" ", 70)) + "\n"
-								+ line.substring(line.lastIndexOf("", 67));
+					if (line.length() > 90) {
+						line = line.substring(0, line.lastIndexOf(" ", 90)) + "\n"
+								+ line.substring(line.lastIndexOf("", 87));
 					}
 					//add new question to question arraylist
 					questions.add(new Question("Question " + count + ":\n" + line));

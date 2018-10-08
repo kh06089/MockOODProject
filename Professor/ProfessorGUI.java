@@ -1,13 +1,12 @@
-package Professor;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter.Change;
@@ -15,12 +14,13 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +38,8 @@ public class ProfessorGUI extends Application {
     private Color colorOff = new Color(0.5, 0.5, 0.5, 0);
     private DropShadow shadowOn = new DropShadow(20, colorOn);
     private DropShadow shadowOff = new DropShadow(20, colorOff);
+
+    private Image GSIcon = new Image("GSIcon.png");
 
     public static void main(String[] args) {
         launch();
@@ -58,7 +60,7 @@ public class ProfessorGUI extends Application {
         double bGroundWidth = 200;
         double bGroundHeight = 112.5;
 
-        Image backGrd = new Image("http://static-11.sinclairstoryline.com/resources/media/a1513171-a451-48a6-ad84-2ea32c3c1a53-large16x9_1280x720_51223E00TCAUL.png", bGroundWidth, bGroundHeight, true, true);
+        Image backGrd = new Image(getClass().getResourceAsStream("GSLogo.png"), bGroundWidth, bGroundHeight, true, true);
         Image help = new Image(getClass().getResourceAsStream("help.png"), 25, 25, false, true);
 
         shadowOn.setSpread(0.7);
@@ -103,6 +105,16 @@ public class ProfessorGUI extends Application {
         send.setLayoutY(240);
         btnHelp.setLayoutY(0);
 
+        //Labels to show which files are being uploaded
+        Label chosenQuestion = new Label();
+        chosenQuestion.setFont(Font.font("Arial", 14));
+        chosenQuestion.setTextFill(Paint.valueOf("#FFFFFF"));
+
+        Label chosenEmail = new Label();
+        chosenEmail.setFont(Font.font("Arial", 14));
+        chosenEmail.setTextFill(Paint.valueOf("#FFFFFF"));
+
+
         question.setPrefWidth(120);
         question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         question.setStyle(buttonStyle);
@@ -135,7 +147,24 @@ public class ProfessorGUI extends Application {
         btnHelp.setOnMousePressed(e -> btnHelp.setStyle("-fx-background-color: transparent; -fx-padding: 6 4 4 6;"));
         btnHelp.setOnMouseReleased(e -> btnHelp.setStyle("-fx-background-color: transparent; -fx-padding: 5 5 5 5;"));
 
+        //Wrap Question and Email buttons/labels so labels stay centered under buttons
+        VBox questionBox = new VBox();
+        questionBox.setPrefWidth(question.getPrefWidth());
+        questionBox.getChildren().addAll(question, chosenQuestion);
+        questionBox.setAlignment(Pos.CENTER);
+        questionBox.setLayoutX(s.getWidth()/2-135);
+        questionBox.setLayoutY(160);
+        questionBox.setSpacing(5);
 
+        VBox emailBox = new VBox();
+        emailBox.setPrefWidth(email.getPrefWidth());
+        emailBox.getChildren().addAll(email, chosenEmail);
+        emailBox.setAlignment(Pos.CENTER);
+        emailBox.setLayoutX(s.getWidth()/2+15);
+        emailBox.setLayoutY(160);
+        emailBox.setSpacing(5);
+
+        //Open help window
         btnHelp.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
@@ -209,37 +238,67 @@ public class ProfessorGUI extends Application {
 
                 rPane.setStyle(backgroundColor);
                 rPane.getChildren().addAll(emailsPane, questionsPane, close, questionView);
+
+                helpStage.getIcons().add(GSIcon);
                 helpStage.setScene(rScene);
                 helpStage.show();
             }
-        });
+        });//end btnHelp.setOnAction
 
         question.setOnAction(event -> {
             Stage questionStage = new Stage();
+            String qDirectory = "B:\\Questions\\";
+            fileChooser.setTitle("Open Questions File");
+            fileChooser.setInitialDirectory(new File(qDirectory));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files" , "*.txt"));
             File file = fileChooser.showOpenDialog(questionStage);
 
+
             if(file != null){
-                openFile(file);
+                String fileAsString = file.toString();
+                fileAsString = fileAsString.substring(qDirectory.length());
+                chosenQuestion.setText(fileAsString);
+                //openFile(file);
             }
-        });
+            else{
+                chosenQuestion.setText(null);
+            }
+        });//end question.setOnAction
 
         email.setOnAction(event -> {
             Stage emailStage = new Stage();
+            String eDirectory = "B:\\Emails\\";
+            fileChooser.setTitle("Open Emails File");
+            fileChooser.setInitialDirectory(new File(eDirectory));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files" , "*.txt"));
             File file = fileChooser.showOpenDialog(emailStage);
 
+
             if(file != null){
-                openFile(file);
+                String fileAsString = file.toString();
+                fileAsString = fileAsString.substring(eDirectory.length());
+                chosenEmail.setText(fileAsString);
+                //openFile(file);
             }
-        });
+            else{
+                chosenEmail.setText(null);
+            }
+        });//end email.setOnAction
 
         reports.setOnAction(event -> {
             Stage reportStage = new Stage();
+            String rDirectory = "B:\\Reports\\";
+            fileChooser.setTitle("Open Reports File");
+            fileChooser.setInitialDirectory(new File(rDirectory));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files" , "*.txt"));
             File file = fileChooser.showOpenDialog(reportStage);
 
             if(file != null){
+                System.out.println(file.toString());
                 openFile(file);
+
             }
-        });
+        });//end reports.setOnAction
 
 
 
@@ -374,23 +433,23 @@ public class ProfessorGUI extends Application {
             sendOut.setOnMouseExited(e -> sendOut.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
 
-            sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback, cancel);
 
+            sendPane.getChildren().addAll(sendOut,days,hours,mins,timeLimit,dayLabel,hourLabel,minLabel,quizCode,qcode,rb1,rb2,rb3,feedback, cancel);
+            sendStage.getIcons().add(GSIcon);
             sendStage.setScene(sendScene);
             sendStage.show();
             primaryStage.hide();
-        });
+        });//end send.setOnAction
 
 
-        p.getChildren().addAll(question,email,reports,send,btnHelp);
+        p.getChildren().addAll(reports,send,btnHelp, questionBox, emailBox);
         outerPane.getChildren().add(p);
 
-
-
+        primaryStage.getIcons().add(GSIcon);
         primaryStage.setScene(s);
         primaryStage.show();
 
-    }
+    }//end start
 
     private void openFile(File file){
         try{
