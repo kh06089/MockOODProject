@@ -80,12 +80,48 @@ public class ProfessorGUI extends Application {
         p.setBackground(background);
 
         //Create Buttons
-        Button question = new Button("  Upload\n" +
-                "Questions");
-        Button email = new Button("Upload\n Emails");
-        Button reports = new Button("  View\nReports");
-        Button send = new Button("Send Out\n Quizzes");
+        Button question = new Button();
+        Button email = new Button();
+        Button reports = new Button();
+        Button send = new Button();
         Button btnHelp = new Button();
+
+        //Create VBoxes within buttons to center text properly
+        VBox questionText = new VBox();
+        Label questionLbl1 = new Label("Upload");
+        Label questionLbl2 = new Label("Questions");
+        questionLbl1.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        questionLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        questionText.getChildren().addAll(questionLbl1, questionLbl2);
+        questionText.setAlignment(Pos.CENTER);
+        question.setGraphic(questionText);
+
+        VBox emailText = new VBox();
+        Label emailLbl1 = new Label("Upload");
+        emailLbl1.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        Label emailLbl2 = new Label("Emails");
+        emailLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        emailText.getChildren().addAll(emailLbl1, emailLbl2);
+        emailText.setAlignment(Pos.CENTER);
+        email.setGraphic(emailText);
+
+        VBox reportText = new VBox();
+        Label reportLbl1 = new Label("View");
+        reportLbl1.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        Label reportLbl2 = new Label("Reports");
+        reportLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        reportText.getChildren().addAll(reportLbl1, reportLbl2);
+        reportText.setAlignment(Pos.CENTER);
+        reports.setGraphic(reportText);
+
+        VBox sendText = new VBox();
+        Label sendLbl1 = new Label("Send Out");
+        Label sendLbl2 = new Label("Quiz");
+        sendLbl1.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        sendLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        sendText.getChildren().addAll(sendLbl1, sendLbl2);
+        sendText.setAlignment(Pos.CENTER);
+        send.setGraphic(sendText);
 
 
         //Create tooltip for help button
@@ -165,9 +201,7 @@ public class ProfessorGUI extends Application {
         emailBox.setSpacing(5);
 
         //Open help window
-        btnHelp.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent event) {
+        btnHelp.setOnAction(event -> {
                 Stage helpStage = new Stage();
                 helpStage.setTitle("File Formats");
 
@@ -242,7 +276,7 @@ public class ProfessorGUI extends Application {
                 helpStage.getIcons().add(GSIcon);
                 helpStage.setScene(rScene);
                 helpStage.show();
-            }
+
         });//end btnHelp.setOnAction
 
         question.setOnAction(event -> {
