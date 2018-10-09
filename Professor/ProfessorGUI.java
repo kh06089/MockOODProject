@@ -258,7 +258,7 @@ public class ProfessorGUI extends Application {
                 close = new Button("Close");
                 close.setPrefWidth(closeWidth);
                 close.setPrefHeight(30);
-                close.setLayoutX((rScene.getWidth() - closeWidth) / 2);
+                close.setLayoutX(30);
                 close.setLayoutY(413);
                 close.setFont(Font.font("Arial", FontWeight.BOLD, 16));
                 close.setStyle(buttonStyle);
@@ -267,11 +267,22 @@ public class ProfessorGUI extends Application {
                 close.setOnMouseExited(e -> close.setStyle("-fx-base: #FFFFFF; -fx-background-radius: 30px;"));
 
 
+                Label star = new Label("*");
+                star.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+                star.setTextFill(Paint.valueOf("#FFFFFF"));
+                star.setLayoutY(413);
+                star.setLayoutX(513);
+                Label legend = new Label(" = CORRECT ANSWER");
+                legend.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
+                legend.setTextFill(Paint.valueOf("#FFFFFF"));
+                legend.setLayoutY(413);
+                legend.setLayoutX(523);
+
                 emailsPane.getChildren().addAll(emailLabel, emailView);
                 questionsPane.getChildren().addAll(questLabel);
 
                 rPane.setStyle(backgroundColor);
-                rPane.getChildren().addAll(emailsPane, questionsPane, close, questionView);
+                rPane.getChildren().addAll(emailsPane, questionsPane, close, questionView, legend, star);
 
                 helpStage.getIcons().add(GSIcon);
                 helpStage.setScene(rScene);

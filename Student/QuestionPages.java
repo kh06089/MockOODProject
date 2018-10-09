@@ -84,8 +84,8 @@ public class QuestionPages {
 					count++;
 					//if the line is too long make it multiline
 					if (line.length() > 90) {
-						line = line.substring(0, line.lastIndexOf(" ", 90)) + "\n"
-								+ line.substring(line.lastIndexOf("", 87));
+						line = line.substring(0, line.lastIndexOf(" ", 30)) + "\n"
+								+ line.substring(line.lastIndexOf("", 27));
 					}
 					//add new question to question arraylist
 					questions.add(new Question("Question " + count + ":\n" + line));
