@@ -58,7 +58,7 @@ public class LoginPage {
 		}));
 
 
-		Label lblCode = new Label("Quiz Code:");
+		Label lblCode = new Label("Quiz Code: ");
 		lblCode.setLayoutX(25);
 		lblCode.setLayoutY(117.5);
 		lblCode.setFont(Font.font("Arial", FontWeight.BOLD, 16));
