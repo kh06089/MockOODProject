@@ -39,7 +39,7 @@ public class ProfessorGUI extends Application {
     private DropShadow shadowOn = new DropShadow(20, colorOn);
     private DropShadow shadowOff = new DropShadow(20, colorOff);
 
-    private Image GSIcon = new Image("GSIcon.png");
+    private Image GSIcon = new Image("GSLogo.png");
 
     public static void main(String[] args) {
         launch();

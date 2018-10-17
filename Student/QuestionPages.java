@@ -15,7 +15,7 @@ import javafx.scene.text.FontWeight;
 public class QuestionPages {
 	
 	//use file to generate questions and answers
-	File txtQuestions = new File("C:\\Users\\brian\\IdeaProjects\\OODProject\\Student\\questions.txt");
+	File txtQuestions = new File("Student/questions.txt");
 
 	//use Question object to store questions and answers
 	ArrayList<Question> questions;
