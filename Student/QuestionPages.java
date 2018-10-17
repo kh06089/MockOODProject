@@ -35,8 +35,8 @@ public class QuestionPages {
 	String buttonStyle = " -fx-background-radius: 25px; -fx-border-color: #14336C; -fx-border-width: 3px; -fx-border-radius: 20px; -fx-background-insets: 0";
 	String backgroundColor = "-fx-background-color: #98B4C2";
 
-	private double paneWidth = 400;
-	private double paneHeight = 300;
+	private double paneWidth = 500;
+	private double paneHeight = 400;
 	int count = 0;
 	int lineLength = 0;
 	
@@ -82,11 +82,6 @@ public class QuestionPages {
 				if (line.contains("?")) {
 					//Increment count for question number
 					count++;
-					//if the line is too long make it multiline
-					if (line.length() > 90) {
-						line = line.substring(0, line.lastIndexOf(" ", 30)) + "\n"
-								+ line.substring(line.lastIndexOf("", 27));
-					}
 					//add new question to question arraylist
 					questions.add(new Question("Question " + count + ":\n" + line));
 				}
@@ -118,8 +113,10 @@ public class QuestionPages {
 		
 		//create label for question
 		Label question = new Label(questions.get(index).question);
+		question.setPrefWidth(paneWidth-10);
 		question.setLayoutX(15);
 		question.setLayoutY(15);
+		question.setWrapText(true);
 		
 		//add question to pane
 		pane.getChildren().add(question);
@@ -135,11 +132,11 @@ public class QuestionPages {
 			// if the answer is a # create a text area
 			if (questions.get(index).answers.get(i).equals("#")) {
 				TextArea shortAnswer = new TextArea();
-				shortAnswer.setLayoutX(35);
-				shortAnswer.wrapTextProperty();
-				shortAnswer.setLayoutY(yPos);
-				shortAnswer.setPrefWidth(paneWidth - 70);
-				shortAnswer.setPrefHeight(paneHeight - 160);
+				shortAnswer.setWrapText(true);
+				shortAnswer.setLayoutX(30);
+				shortAnswer.setLayoutY(yPos+30);
+				shortAnswer.setPrefWidth(paneWidth - 60);
+				shortAnswer.setPrefHeight(paneHeight - 180);
 				shortAnswer.setStyle(buttonStyle +"; -fx-background-radius: 0px; -fx-border-radius: 0px");
 				pane.getChildren().add(shortAnswer);
 			} else {
