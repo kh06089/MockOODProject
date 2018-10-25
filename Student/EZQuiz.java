@@ -8,6 +8,13 @@ public class EZQuiz extends Application{
 	private int pageNum = 0;
 
     public static void main(String args[]) {
+	//Checks IP address
+	try {
+    		CheckIP.check();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+	    
        launch(args);
     }
 
