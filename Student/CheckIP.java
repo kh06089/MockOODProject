@@ -20,6 +20,6 @@ public class CheckIP {
 		else 
 			JOptionPane.showMessageDialog(null, "Sorry, your IP Address does not match one on Georgia Southern Statesboro Campus. "
 					+ "\rPlease use a computer on campus to take this quiz.", "GSU IP Checker", 0);
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
